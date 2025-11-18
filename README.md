@@ -3,7 +3,7 @@
 
 This guide details the installation of Vaultwarden on an Ugreen NAS (UGOS) using Docker Compose, Caddy as a reverse proxy, and **Cloudflare for Let's Encrypt TLS certificate management**.
 
-**Objective:** To secure Vaultwarden with a valid, publicly trusted SSL/TLS certificate (**Let's Encrypt**) while restricting actual access to the **Local Area Network (LAN) only** eg. https://vault.domain:8443
+**Objective:** To secure Vaultwarden with a valid, publicly trusted SSL/TLS certificate (**Let's Encrypt**) while restricting actual access to the **Local Area Network (LAN) only** eg. `https://vault.domain.com:8443`
 
 > **Why this configuration?**  *Some users prefer to **access their Vaultwarden instance exclusively locally** and prefer not to expose it to the public internet.* 
 > 
@@ -15,7 +15,13 @@ This guide details the installation of Vaultwarden on an Ugreen NAS (UGOS) using
 
    - **Host System:** Ugreen NAS running **UGOS**.
    - **Domain Management:** An active **domain name** with **Cloudflare DNS** configured. [Cloudflare](https://www.cloudflare.com/)
-   - **Containerization:** **Docker** and **Portainer** installed and running on the NAS. [Docker & Portainer Documentation for UGOS](https://mariushosting.com/how-to-install-portainer-on-your-ugreen-nas/) 
+   - **Containerization:** **Docker** and **Portainer** installed and running on the NAS. [Docker & Portainer Documentation for UGOS](https://mariushosting.com/how-to-install-portainer-on-your-ugreen-nas/)
+
+| Process | RAM Usage  |
+|--|--|
+| portainer | ~ 50mb|
+| caddy | ~ 30mb|
+| vaultwarden | ~ 50mb|
 
 ## 1. Cloudflare DNS Setup and API Token Creation
 
