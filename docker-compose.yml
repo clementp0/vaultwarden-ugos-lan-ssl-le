@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      - ADMIN_TOKEN=testing-admin-token
+      - WEBSOCKET_ENABLED=true
+      - DOMAIN=https://vault.domain.com:8443
+    volumes:
+      - /volume1/docker/vaultwarden/data:/data
+    networks:
+      - internal
+  caddy:
+    image: caddy-custom:latest
+    container_name: caddy
+    restart: unless-stopped
+    environment:
+      - CLOUDFLARE_API_TOKEN=-abcdefg123456789ABCDEFG
+    volumes:
+      - /volume1/docker/caddy/data:/data
+      - /volume1/docker/caddy/config:/config
+      - /volume1/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+    ports:
+      - "8443:8443"
+    networks:
+      - internal
+networks:
+  internal:
+    driver: bridge
